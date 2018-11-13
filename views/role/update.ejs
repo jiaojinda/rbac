@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form action="/role/update" method="POST" id="updateForm">
+    <input type="hidden" name="id" value="<%= item._id %>">
+    <input type="hidden" name="name" id="name" value="<%= item.name %>">
+    <div id="checkRet"></div>
+    角色名: <input type="text" value="<%= item.name %>"  onchange="checkName();" id="tempname" maxlength="10">  <br>
+    <input type="button" onclick="isfull();" value="修改">
+</form>
+<script src="/javascripts/jquery-3.3.1.js"></script>
+<script>
+    //名称检测
+    function checkName() {
+        $("#name").val("");
+        $("#checkRet").html('<img src="/images/loading.gif" width="15px">&nbsp;&nbsp;查询角色名是否可用');
+        var name = $("#tempname").val();
+        $.ajax({
+            data: {name:name},
+            url: '/role/checkName',
+            type:"post",
+            dataType: 'JSON',
+            success: function(data){
+                if(data.flag==true){
+                    $("#checkRet").html('<img src="/images/wrong.png" width="15px">&nbsp;&nbsp;角色名:'+name+'已被使用');
+                    $("#tempname").val("");
+                }else{
+                    $("#checkRet").html('<img src="/images/right.png" width="15px">&nbsp;&nbsp;角色名:'+name+'可以使用');
+                    $("#name").val(name);
+                }
+            },
+            error: function(){
+                alert("验证失败");
+            }
+        });
+    }
+    //校验
+    function isfull() {
+        if($("#tempname").val()==""){
+            alert("请填写角色名");
+            return;
+        }
+        if($("#name").val()==""){
+            alert("请等待验证");
+            return;
+        }
+        $("#updateForm").submit();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+<input type="button" onclick="javascrtpt:window.location.href='/menu/add'" value="添加">
+<table border="1">
+    <tr>
+        <th>url</th>
+        <th>名称</th>
+        <th>类型</th>
+        <th>icon</th>
+        <th>序号</th>
+        <th>操作</th>
+    </tr>
+    <% for(var i = 0; i < list.length; i++) { %>
+        <tr>
+            <td><%= list[i].url %></td>
+            <td><%= list[i].name %></td>
+            <td>
+                <%if(list[i].type=="1" ){%> 菜单 <%}%>
+                <%if(list[i].type=="0" ){%> 功能 <%}%>
+            </td>
+            <td><%= list[i].icon %></td>
+            <td><%= list[i].order %></td>
+            <td><a href="/menu/update?id=<%= list[i]._id %>">修改</a>
+            <a href="/menu/del?id=<%= list[i]._id %>">删除</a></td>
+        </tr>
+    <% } %>
+</table>
+<script>
+
+</script>
+</body>
+</html>

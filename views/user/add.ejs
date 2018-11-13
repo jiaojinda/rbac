@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form action="/user/add" method="POST" id="addForm">
+    <input name="account" id="account">
+    <div id="checkRet"></div>
+    账号: <input type="text" id="tempaccount" onchange="checkAccount();" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^/d]/g,''))" maxlength="10">   <br>
+    密码: <input type="password" name="password" id="password">  <br>
+    密码: <input type="password"id="repassword">  <br>
+    昵称: <input type="text" name="name" id="name" maxlength="10">  <br>
+    性别: 男<input type="radio" name="sex" value="1"> &nbsp; 女 <input type="radio" name="sex" value="0"><br>
+
+    <input type="button" onclick="isfull();" value="提交">
+</form>
+<script src="/javascripts/jquery-3.3.1.js"></script>
+<script>
+    //账号检测
+    function checkAccount() {
+        $("#checkRet").html('<img src="/images/loading.gif" width="15px">&nbsp;&nbsp;查询账号是否可用');
+        var account = $("#tempaccount").val();
+        $.ajax({
+            data: {account:account},
+            url: '/user/checkAccount',
+            type:"post",
+            dataType: 'JSON',
+            success: function(data){
+                if(data.flag==true){
+                    $("#checkRet").html('<img src="/images/wrong.png" width="15px">&nbsp;&nbsp;账号:'+account+'已被使用');
+                    $("#tempaccount").val("");
+                }else{
+                    $("#checkRet").html('<img src="/images/right.png" width="15px">&nbsp;&nbsp;账号:'+account+'可以使用');
+                    $("#account").val(account);
+                }
+            },
+            error: function(){
+                alert("验证失败");
+            }
+        });
+    }
+    //校验
+    function isfull() {
+        if($("#tempaccount").val()==""){
+            alert("请填写账号");
+            return;
+        }
+        if($("#account").val()==""){
+            alert("请等待验证");
+            return;
+        }
+        if($("#password").val()==""){
+            alert("请填写密码");
+            return;
+        }
+        if($("#repassword").val()!=$("#password").val()){
+            alert("请保持密码输入一致");
+            return;
+        }
+        if($("#name").val()==""){
+            alert("请填写昵称");
+            return;
+        }
+        if($('input:radio[name="sex"]:checked').val()==null){
+            alert("请选择性别");
+            return;
+        }
+        $("#addForm").submit();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form action="/menu/add" method="POST" id="addForm">
+    <div id="checkRet"></div>
+    url: <input type="text" name="url" id="url">   <br>
+    名称: <input type="text" name="name" id="name"  maxlength="10">   <br>
+    类型: 菜单<input type="radio" name="type" value="1"> &nbsp; 功能 <input type="radio" name="type" value="0"><br>
+    icon: <input type="text" name="icon" id="icon" >   <br>
+    序号: <input type="text" name="order" id="order" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">   <br>
+    <input type="button" onclick="isfull();" value="提交">
+</form>
+<script src="/javascripts/jquery-3.3.1.js"></script>
+<script>
+    //校验
+    function isfull() {
+        if($("#url").val()==""){
+            alert("请填写url");
+            return;
+        }
+        if($("#name").val()==""){
+            alert("请填写链接名");
+            return;
+        }
+        if($('input:radio[name="type"]:checked').val()==null){
+            alert("请选择类别");
+            return;
+        }
+        $("#addForm").submit();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form action="/menu/update" method="POST" id="updateForm">
+    <input type="hidden" name="id" value="<%= item._id %>">
+    url: <input type="text" value="<%= item.url %>"  name="url" id="url">   <br>
+    名称: <input type="text" value="<%= item.name %>" name="name" id="name"  maxlength="10">   <br>
+    类型:
+    菜单<input type="radio" name="type" value="1" <% if(item.type=="1") { %>checked="checked" <% }%>> &nbsp;
+    功能 <input type="radio" name="type" value="0" <% if(item.type=="1") { %>checked="checked" <% }%>><br>
+    icon: <input type="text" value="<%= item.icon %>"  name="icon" id="icon" >   <br>
+    序号: <input type="text" value="<%= item.order %>"  name="order" id="order" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">   <br>
+    <input type="button" onclick="isfull();" value="修改">
+</form>
+<script src="/javascripts/jquery-3.3.1.js"></script>
+<script>
+    //校验
+    function isfull() {
+        if($("#url").val()==""){
+            alert("请填写url");
+            return;
+        }
+        if($("#name").val()==""){
+            alert("请填写链接名");
+            return;
+        }
+        if($('input:radio[name="type"]:checked').val()==null){
+            alert("请选择类别");
+            return;
+        }
+        $("#updateForm").submit();
+    }
+</script>
+</body>
+</html>

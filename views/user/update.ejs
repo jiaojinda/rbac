@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form action="/user/update" method="POST" id="updateForm">
+    <input type="hidden" name="id" value="<%= item._id %>">
+    账号: <input type="text" value="<%= item.account %>" readonly="readonly">  <br>
+    昵称: <input type="text" value="<%= item.name %>" name="name" id="name" maxlength="10">  <br>
+    性别:
+    男<input type="radio" name="sex" value="1" <% if(item.sex=="1") { %>checked="checked" <% }%>> &nbsp;
+    女 <input type="radio" name="sex" value="0" <% if(item.sex=="1") { %>checked="checked" <% }%>><br>
+    <input type="button" onclick="isfull();" value="修改">
+</form>
+<script src="/javascripts/jquery-3.3.1.js"></script>
+<script>
+    //校验
+    function isfull() {
+        if($("#name").val()==""){
+            alert("请填写昵称");
+            return;
+        }
+        if($('input:radio[name="sex"]:checked').val()==null){
+            alert("请选择性别");
+            return;
+        }
+        $("#updateForm").submit();
+    }
+</script>
+</body>
+</html>

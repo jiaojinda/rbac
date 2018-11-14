@@ -9,17 +9,27 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var dbUtil = new DbUtil();
 var menuCollection = "menu";
 
-//列表页
-router.get('/list', function (req, res) {
-   dbUtil.find(menuCollection,{},function (result) {
-        res.render('menu/list', { list: result});
+//树页
+router.get('/tree', function(req, res) {
+    app.use(express.static('public'));
+    res.render('menu/tree');
+});
+
+//节点
+router.post('/getTreeNode', function (req, res) {
+    var whereJson = {parent:"0"};
+    dbUtil.find(menuCollection,whereJson,function (rootChildren) {
+        var whereJson = {parent:{$ne:"0"}};
+        dbUtil.find(menuCollection,whereJson,function (treeChildren) {
+            res.json({rootChildren:rootChildren,treeChildren:treeChildren});
+        });
     });
 })
 
 //添加页
 router.get('/add', function(req, res) {
     app.use(express.static('public'));
-    res.render('menu/add');
+    res.render('menu/add',{ parent: 0});
 });
 
 //添加
@@ -33,7 +43,7 @@ router.post('/add', urlencodedParser, function (req, res) {
         order:req.body.order
     };
     dbUtil.insertOne(menuCollection,addJson,function (result) {
-        res.redirect(302, '/menu/list');
+        res.redirect(302, '/menu/tree');
     });
 })
 
@@ -61,7 +71,7 @@ router.post('/update', urlencodedParser, function (req, res) {
             order:req.body.order
         }};
     dbUtil.updateOne(menuCollection,whereJson,updateStr,function (result) {
-        res.redirect(302, '/menu/list');
+        res.redirect(302, '/menu/tree');
     });
 })
 
@@ -72,7 +82,7 @@ router.get('/del', function (req, res) {
     var ObjectID = require('mongodb').ObjectID;
     var whereJson = {_id:ObjectID(params.id)};  // 条件
     dbUtil.deleteOne(menuCollection,whereJson,function (result) {
-        res.redirect(302, '/menu/list');
+        res.redirect(302, '/menu/tree');
     });
 })
 

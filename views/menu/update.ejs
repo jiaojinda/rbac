@@ -3,11 +3,12 @@
 <body>
 <form action="/menu/update" method="POST" id="updateForm">
     <input type="hidden" name="id" value="<%= item._id %>">
+    <input type="hidden" name="parent" value="<%= item.parent %>">
     url: <input type="text" value="<%= item.url %>"  name="url" id="url">   <br>
     名称: <input type="text" value="<%= item.name %>" name="name" id="name"  maxlength="10">   <br>
     类型:
-    菜单<input type="radio" name="type" value="1" <% if(item.type=="1") { %>checked="checked" <% }%>> &nbsp;
-    功能 <input type="radio" name="type" value="0" <% if(item.type=="1") { %>checked="checked" <% }%>><br>
+    菜单<input type="radio" name="type" value="0" <% if(item.type=="0") { %>checked="checked" <% }%>> &nbsp;
+    功能 <input type="radio" name="type" value="1" <% if(item.type=="1") { %>checked="checked" <% }%>><br>
     icon: <input type="text" value="<%= item.icon %>"  name="icon" id="icon" >   <br>
     序号: <input type="text" value="<%= item.order %>"  name="order" id="order" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">   <br>
     <input type="button" onclick="isfull();" value="修改">

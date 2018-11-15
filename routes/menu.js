@@ -29,7 +29,9 @@ router.post('/getTreeNode', function (req, res) {
 //添加页
 router.get('/add', function(req, res) {
     app.use(express.static('public'));
-    res.render('menu/add',{ parent: 0});
+    // 解析 url 参数
+    var params = url.parse(req.url,true).query;
+    res.render('menu/add',{parent:params.id});
 });
 
 //添加

@@ -3,7 +3,8 @@
 <body>
 <link rel="stylesheet" href="/javascripts/zTree_v3/css/demo.css" type="text/css">
 <link rel="stylesheet" href="/javascripts/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
-<input type="button" onclick="javascrtpt:window.location.href='/menu/add'" value="添加">
+<input type="button" onclick="toAdd();" value="添加">
+<input type="hidden" id="parent">
 <ul id="myTree" class="ztree"></ul>
 <script src="/javascripts/jquery-3.3.1.js"></script>
 <script src="/javascripts/zTree_v3/js/jquery.ztree.all.js"></script>
@@ -11,11 +12,6 @@
     var zTreeObj;
     // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
     var setting = {
-        check: {
-            chkStyle: "radio",
-            radioType: "all",
-            enable: true
-        },
         data: {
             simpleData: {
                 enable: true
@@ -52,12 +48,12 @@
                     var treeChildren = new Array();
                     for(var j=0;j<treeNode.length;j++){
                         if(treeNode[j].parent==rootNode[i]._id){
-                            treeChildren.push({name:treeNode[j].name,id:treeNode[j]._id})
+                            treeChildren.push({name:treeNode[j].name,id:treeNode[j]._id,click:"getParent('');"});
                         }
                     }
-                    rootChildren.push({name:rootNode[i].name,id:rootNode[i]._id,children:treeChildren});
+                    rootChildren.push({name:rootNode[i].name,id:rootNode[i]._id,click:"getParent('"+rootNode[i]._id+"');",children:treeChildren});
                 }
-                var sys = {name:"系统", open:true, children:rootChildren};
+                var sys = {name:"系统", click:"getParent('0');",open:true, children:rootChildren};
                 zTreeObj = $.fn.zTree.init($("#myTree"), setting, [sys]);
             },
             error: function(){
@@ -65,6 +61,17 @@
             }
         });
     });
+    function getParent(id) {
+        $("#parent").val(id);
+    }
+    function toAdd() {
+        var parent = $("#parent").val();
+        if(parent==""){
+            alert("请选择菜单节点进行添加");
+            return;
+        }
+        window.location.href="/menu/add?id="+parent;
+    }
 </script>
 </body>
 </html>

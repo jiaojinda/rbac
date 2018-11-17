@@ -28,7 +28,7 @@ router.post('/checkName', urlencodedParser, function (req, res) {
 //添加页
 router.get('/add', function(req, res) {
     app.use(express.static('public'));
-    res.render('role/add');
+    res.render('role/add',{ item: result[0]});
 });
 
 //添加

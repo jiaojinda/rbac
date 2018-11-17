@@ -1,19 +1,90 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <style type="text/css">
+        .demo{width:450px; margin:20px }
+        .select_side{float:left; width:200px}
+        select{width:200px; height:200px;border: 1px solid #404040;font-weight: bold}
+        .select_opt{float:left; width:40px; height:15%; padding-top: 80px;padding-left: 10px;}
+        .select_opt p{width:26px; height:26px; margin-top:6px; background:url(/images/arr.gif) no-repeat; cursor:pointer; text-indent:-999em}
+        .select_opt p#toright{background-position:2px 0}
+        .select_opt p#toleft{background-position:2px -22px}
+    </style>
+</head>
 <body>
 <form action="/user/update" method="POST" id="updateForm">
     <input type="hidden" name="id" value="<%= item._id %>">
+    <input type="hidden" name="roleStr" id="roleStr">
     账号: <input type="text" value="<%= item.account %>" readonly="readonly">  <br>
     昵称: <input type="text" value="<%= item.name %>" name="name" id="name" maxlength="10">  <br>
     性别:
     男<input type="radio" name="sex" value="1" <% if(item.sex=="1") { %>checked="checked" <% }%>> &nbsp;
-    女 <input type="radio" name="sex" value="0" <% if(item.sex=="1") { %>checked="checked" <% }%>><br>
-    <input type="button" onclick="isfull();" value="修改">
+    女 <input type="radio" name="sex" value="0" <% if(item.sex=="0") { %>checked="checked" <% }%>><br>
+    角色:
+    <div class="demo">
+        <div class="select_side">
+            <p align="center">待选区</p>
+            <select id="selectL" name="selectL" multiple="multiple">
+                <% for(var i = 0; i < haventRoleList.length; i++) { %>
+                    <tr>
+                        <option value="<%= haventRoleList[i]._id %>"><%= haventRoleList[i].name %></option>
+                    </tr>
+                <% } %>
+            </select>
+        </div>
+        <div class="select_opt">
+            <p id="toright" title="添加">&gt;</p>
+            <p id="toleft" title="移除">&lt;</p>
+        </div>
+        <div class="select_side">
+            <p align="center">已选区</p>
+            <select id="selectR" name="selectR" multiple="multiple">
+                <% for(var i = 0; i < haveRoleList.length; i++) { %>
+                    <tr>
+                        <option value="<%= haveRoleList[i]._id %>"><%= haveRoleList[i].name %></option>
+                    </tr>
+                <% } %>
+            </select>
+        </div>
+        <input type="button" onclick="isfull();" value="修改">
+    </div>
 </form>
 <script src="/javascripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    //选择框相关
+    $(function(){
+        var leftSel = $("#selectL");
+        var rightSel = $("#selectR");
+        $("#toright").bind("click",function(){
+            leftSel.find("option:selected").each(function(){
+                $(this).remove().appendTo(rightSel);
+            });
+        });
+        $("#toleft").bind("click",function(){
+            rightSel.find("option:selected").each(function(){
+                $(this).remove().appendTo(leftSel);
+            });
+        });
+        leftSel.dblclick(function(){
+            $(this).find("option:selected").each(function(){
+                $(this).remove().appendTo(rightSel);
+            });
+        });
+        rightSel.dblclick(function(){
+            $(this).find("option:selected").each(function(){
+                $(this).remove().appendTo(leftSel);
+            });
+        });
+    });
+</script>
 <script>
     //校验
     function isfull() {
+        var role = [];
+        $("#selectR option").each(function(){
+            role.push($(this).val());
+        });
+        $("#roleStr").val(role);
         if($("#name").val()==""){
             alert("请填写昵称");
             return;

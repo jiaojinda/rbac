@@ -94,23 +94,6 @@ router.get('/update', function(req, res) {
                 res.render('user/update',{ item: result[0],haveRoleList:haveRoleList,haventRoleList:haventRoleList});
             });
         });
-
-
-
-        // dbUtil.aggregate(roleCollection,userRoleCollection,"_id","roleId","user_role",{},function (roleResult) {
-        //     console.log(roleResult);
-        //     var haveRoleList = new Array();
-        //     var haventRoleList = new Array();
-        //     for(var i=0;i<roleResult.length;i++){
-        //         var role = {_id:roleResult[i]._id,name:roleResult[i].name};
-        //         if(roleResult[i].user_role.length>0&&roleResult[i].user_role[0].userId.toString()==userId.toString()){
-        //             haveRoleList.push(role);
-        //         }else{
-        //             haventRoleList.push(role);
-        //         }
-        //     }
-        //     res.render('user/update',{ item: result[0],haveRoleList:haveRoleList,haventRoleList:haventRoleList});
-        // });
     });
 });
 

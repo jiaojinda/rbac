@@ -1,13 +1,65 @@
 <!DOCTYPE html>
 <html>
 <body>
+<link rel="stylesheet" href="/javascripts/zTree_v3/css/demo.css" type="text/css">
+<link rel="stylesheet" href="/javascripts/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
 <form action="/role/add" method="POST" id="addForm">
     <input type="hidden" name="name" id="name">
+    <input type="hidden" name="menuStr" id="menuStr">
     <div id="checkRet"></div>
     角色名: <input type="text" id="tempname" onchange="checkName();"  maxlength="10">   <br>
+    权限:
+    <ul id="myTree" class="ztree">
+        <div align="center"><img src="/images/loading.gif" width="20px">&nbsp;&nbsp;载入中</div>
+    </ul><br/>
     <input type="button" onclick="isfull();" value="提交">
 </form>
 <script src="/javascripts/jquery-3.3.1.js"></script>
+<script src="/javascripts/zTree_v3/js/jquery.ztree.all.js"></script>
+<script>
+    var zTreeObj;
+    // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
+    var setting = {
+        check: {
+            enable: true,
+            chkDisabledInherit: true,
+            chkboxType : { "Y" : "p", "N" : "s" }
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+
+    // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
+    $(document).ready(function () {
+        $.ajax({
+            url: '/menu/getTreeNode',
+            type:"post",
+            dataType: 'JSON',
+            success: function(data){
+                var rootNode = data.rootChildren;
+                var treeNode = data.treeChildren;
+                var rootChildren = new Array();
+                for(var i=0;i<rootNode.length;i++){
+                    var treeChildren = new Array();
+                    for(var j=0;j<treeNode.length;j++){
+                        if(treeNode[j].parent==rootNode[i]._id){
+                            treeChildren.push({name:treeNode[j].name,id:treeNode[j]._id});
+                        }
+                    }
+                    rootChildren.push({name:rootNode[i].name,id:rootNode[i]._id,children:treeChildren});
+                }
+                var sys = {name:"系统", open:true,children:rootChildren,nocheck:true};
+                zTreeObj = $.fn.zTree.init($("#myTree"), setting, [sys]);
+            },
+            error: function(){
+                alert("查询节点失败");
+            }
+        });
+    });
+</script>
 <script>
     //名称检测
     function checkName() {
@@ -34,6 +86,13 @@
     }
     //校验
     function isfull() {
+        var treeObj = $.fn.zTree.getZTreeObj("myTree");
+        var nodes = treeObj.getCheckedNodes(true);
+        var menu = [];
+        for(var i=0;i<nodes.length;i++){
+            menu.push(nodes[i].id);
+        }
+        $("#menuStr").val(menu);
         if($("#tempname").val()==""){
             alert("请填写角色名");
             return;

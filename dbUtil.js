@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
-var dburl = 'mongodb://localhost:27017';
-var dbName = "mytest";
+var config =require('./dbConfig');
+var dbUrl = config.dbUrl;
+var dbName = config.dbName;
 
 class DbUtil{
     //创建库
     create(collection) {
-        MongoClient.connect(dburl,{ useNewUrlParser: true }, function (err, db) {
+        MongoClient.connect(dbUrl,{ useNewUrlParser: true }, function (err, db) {
             if (err) throw err;
             var dbase = db.db(dbName.toString());
             dbase.createCollection(collection, function (err, res) {
@@ -19,7 +20,7 @@ class DbUtil{
     }
     //查询
     find(collection,whereJson,callback) {
-        MongoClient.connect(dburl,{ useNewUrlParser: true }, function (err, db) {
+        MongoClient.connect(dbUrl,{ useNewUrlParser: true }, function (err, db) {
             if (err) throw err;
             var dbase = db.db(dbName.toString());
             dbase.collection(collection.toString()). find(whereJson).toArray(function(err, result) {
@@ -31,7 +32,7 @@ class DbUtil{
     }
     //关联查询
     aggregate(collectionLeft,collectionRigeh,localField,foreignField,as,whereJson,callback) {
-        MongoClient.connect(dburl,{ useNewUrlParser: true }, function (err, db) {
+        MongoClient.connect(dbUrl,{ useNewUrlParser: true }, function (err, db) {
             if (err) throw err;
             var dbo = db.db(dbName.toString());
             dbo.collection(collectionLeft.toString()).aggregate([
@@ -52,7 +53,7 @@ class DbUtil{
     }
     //插入单条
     insertOne(collection,addJson,callback) {
-        MongoClient.connect(dburl,{ useNewUrlParser: true }, function (err, db) {
+        MongoClient.connect(dbUrl,{ useNewUrlParser: true }, function (err, db) {
             if (err) throw err;
             var dbase = db.db(dbName.toString());
             dbase.collection(collection.toString()).insertOne(addJson,function(err, result) {
@@ -64,7 +65,7 @@ class DbUtil{
     }
     //插入多条
     insertMany(collection,addJsonObj,callback) {
-        MongoClient.connect(dburl,{ useNewUrlParser: true }, function (err, db) {
+        MongoClient.connect(dbUrl,{ useNewUrlParser: true }, function (err, db) {
             if (err) throw err;
             var dbo = db.db(dbName.toString());
             dbo.collection(collection.toString()).insertMany(addJsonObj, function(err, result) {
@@ -76,7 +77,7 @@ class DbUtil{
     }
     //修改
     updateOne(collection,whereJson,updateJson,callback) {
-        MongoClient.connect(dburl,{ useNewUrlParser: true }, function (err, db) {
+        MongoClient.connect(dbUrl,{ useNewUrlParser: true }, function (err, db) {
             if (err) throw err;
             var dbase = db.db(dbName.toString());
             dbase.collection(collection.toString()).updateOne(whereJson,updateJson,function(err, result) {
@@ -88,7 +89,7 @@ class DbUtil{
     }
     //删除单条
     deleteOne(collection,whereJson,callback) {
-        MongoClient.connect(dburl,{ useNewUrlParser: true }, function (err, db) {
+        MongoClient.connect(dbUrl,{ useNewUrlParser: true }, function (err, db) {
             if (err) throw err;
             var dbase = db.db(dbName.toString());
             dbase.collection(collection.toString()).deleteOne(whereJson,function(err, result) {
@@ -100,7 +101,7 @@ class DbUtil{
     }
     //删除多条
     deleteMany(collection,whereJson,callback) {
-        MongoClient.connect(dburl,{ useNewUrlParser: true }, function (err, db) {
+        MongoClient.connect(dbUrl,{ useNewUrlParser: true }, function (err, db) {
             if (err) throw err;
             var dbase = db.db(dbName.toString());
             dbase.collection(collection.toString()).deleteMany(whereJson,function(err, result) {

@@ -15,6 +15,11 @@ router.get('/tree', function(req, res) {
     res.render('menu/tree');
 });
 
+//树页
+router.post('/getMenu', function(req, res) {
+    res.json({treeList:req.session.menu});
+});
+
 //节点
 router.post('/getTreeNode', function (req, res) {
     var whereJson = {parent:"0"};

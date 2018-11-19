@@ -1,14 +1,104 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>rbac</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/javascripts/zTree_v3/css/demo.css" type="text/css">
+    <link rel="stylesheet" href="/javascripts/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script src="/javascripts/jquery-3.3.1.js"></script>
+    <script src="/javascripts/zTree_v3/js/jquery.ztree.all.js"></script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <p>Welcome</p>
   <a href="/user/list">用户管理</a><br/>
   <a href="/role/list">角色管理</a><br/>
   <a href="/menu/tree">菜单管理</a><br/>
+    <ul id="myTree" class="ztree">
+      <div align="center"><img src="/images/loading.gif" width="20px">&nbsp;&nbsp;载入中</div>
+    </ul>
+    <script>
+        var curMenu = null, zTree_Menu = null;
+        var setting = {
+            view: {
+                showLine: false,
+                showIcon: false,
+                selectedMulti: false,
+                dblClickExpand: false,
+                addDiyDom: addDiyDom
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            callback: {
+                beforeClick: beforeClick
+            }
+        };
+
+        function addDiyDom(treeId, treeNode) {
+            var spaceWidth = 5;
+            var switchObj = $("#" + treeNode.id + "_switch"),
+                icoObj = $("#" + treeNode.id + "_ico");
+            switchObj.remove();
+            icoObj.before(switchObj);
+
+            if (treeNode.level > 1) {
+                var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level)+ "px'></span>";
+                switchObj.before(spaceStr);
+            }
+        }
+
+        function beforeClick(treeId, treeNode) {
+            if (treeNode.level == 0 ) {
+                var zTree = $.fn.zTree.getZTreeObj("myTree");
+                zTree.expandNode(treeNode);
+                return false;
+            }
+            return true;
+        }
+
+        // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
+        $(document).ready(function () {
+            $.ajax({
+                url: '/menu/getMenu',
+                type:"post",
+                dataType: 'JSON',
+                success: function(data){
+                    var treeList = data.treeList;
+                    var rootNode = [];
+                    for(var i=0;i<treeList.length;i++){
+                        if(treeList[i].parent=="0"){
+                            var treeNode = [];
+                            for(var j=0;j<treeList.length;j++){
+                                if(treeList[i]._id==treeList[j].parent){
+                                    treeNode.push({ id:treeList[j]._id, name:treeList[j].name,click:"goto('"+treeList[j].url+"');"})
+                                }
+                            }
+                            rootNode.push({ id:treeList[i]._id, name:treeList[i].name, open:true,click:"goto('"+treeList[i].url+"');",children:treeNode})
+                        }
+                    }
+                    var treeObj = $("#myTree");
+                    $.fn.zTree.init(treeObj, setting, rootNode);
+                    zTree_Menu = $.fn.zTree.getZTreeObj("myTree");
+
+                    treeObj.hover(function () {
+                        if (!treeObj.hasClass("showIcon")) {
+                            treeObj.addClass("showIcon");
+                        }
+                    }, function() {
+                        treeObj.removeClass("showIcon");
+                    });
+                },
+                error: function(){
+                    alert("查询节点失败");
+                }
+            });
+        });
+
+        function goto(url) {
+            window.location.href=url;
+        }
+    </script>
   </body>
 </html>

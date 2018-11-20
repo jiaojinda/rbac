@@ -17,8 +17,12 @@
                 <%if(list[i].sex=="1" ){%> 男 <%}%>
                 <%if(list[i].sex=="0" ){%> 女 <%}%>
             </td>
-            <td><a href="/user/update?id=<%= list[i]._id %>">修改</a>
-            <a href="/user/del?id=<%= list[i]._id %>">删除</a></td>
+            <td>
+                <a href="/user/update?id=<%= list[i]._id %>">修改</a>
+                <%if(list[i]._id!=userId){%>
+                    <a href="/user/del?id=<%= list[i]._id %>">删除</a>
+                <%}%>
+            </td>
         </tr>
     <% } %>
 </table>

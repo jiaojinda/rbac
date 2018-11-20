@@ -11,10 +11,11 @@ var dbUtil = new DbUtil();
 var userCollection = "user";
 var roleCollection = "role";
 var userRoleCollection = "user-role";
+
 //列表页
 router.get('/list', function (req, res) {
-   dbUtil.find(userCollection,{},function (result) {
-        res.render('user/list', { list: result});
+    dbUtil.find(userCollection,{},function (result) {
+        res.render('user/list', { list: result,userId:req.session.user.userId});
     });
 })
 

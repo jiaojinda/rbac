@@ -9,13 +9,18 @@
     <script src="/javascripts/zTree_v3/js/jquery.ztree.all.js"></script>
   </head>
   <body>
-    <p>Welcome</p>
+  <a href="/logout">[注销]</a>
+  <br/><br/><p>欢迎</p><br/>
+  -----------------静态菜单-----------------<br/>
   <a href="/user/list">用户管理</a><br/>
   <a href="/role/list">角色管理</a><br/>
-  <a href="/menu/tree">菜单管理</a><br/>
+    <a href="/menu/tree">菜单管理</a><br/>
+  -----------------动态菜单-----------------<br/>
     <ul id="myTree" class="ztree">
       <div align="center"><img src="/images/loading.gif" width="20px">&nbsp;&nbsp;载入中</div>
     </ul>
+  <br/><br/>
+  <a href="http://47.95.245.41/" target="_blank">小工具:盥洗室排期工具</a>
     <script>
         var curMenu = null, zTree_Menu = null;
         var setting = {
@@ -30,9 +35,6 @@
                 simpleData: {
                     enable: true
                 }
-            },
-            callback: {
-                beforeClick: beforeClick
             }
         };
 
@@ -47,15 +49,6 @@
                 var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level)+ "px'></span>";
                 switchObj.before(spaceStr);
             }
-        }
-
-        function beforeClick(treeId, treeNode) {
-            if (treeNode.level == 0 ) {
-                var zTree = $.fn.zTree.getZTreeObj("myTree");
-                zTree.expandNode(treeNode);
-                return false;
-            }
-            return true;
         }
 
         // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）

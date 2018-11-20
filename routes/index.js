@@ -59,5 +59,11 @@ router.post('/login', urlencodedParser, function (req, res) {
     });
 })
 
+//注销
+router.get('/logout', urlencodedParser, function (req, res) {
+    req.session.user=undefined;
+    res.render('login', { message: '已安全退出' });
+})
+
 
 module.exports = router;

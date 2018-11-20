@@ -41,15 +41,16 @@ router.get('/add', function(req, res) {
 
 //添加
 router.post('/add', urlencodedParser, function (req, res) {
+    var ObjectID = require('mongodb').ObjectID;
     var addJson ={
         name:req.body.name,
         url:req.body.url,
         type:req.body.type,
         icon:req.body.icon,
-        parent:req.body.parent,
+        parent:req.body.parent=="0"?req.body.parent:ObjectID(req.body.parent),
         order:req.body.order
     };
-    dbUtil.insertOne(menuCollection,addJson,function (result) {
+    dbUtil.insertOne(menuCollection,addJson,function () {
         res.redirect(302, '/menu/tree');
     });
 })
@@ -87,9 +88,13 @@ router.get('/del', function (req, res) {
     // 解析 url 参数
     var params = url.parse(req.url, true).query;
     var ObjectID = require('mongodb').ObjectID;
-    var whereJson = {_id:ObjectID(params.id)};  // 条件
-    dbUtil.deleteOne(menuCollection,whereJson,function (result) {
-        res.redirect(302, '/menu/tree');
+    var menuId = ObjectID(params.id);
+    var whereJson = {_id:menuId};  // 条件
+    dbUtil.deleteOne(menuCollection,whereJson,function () {
+        var menuWhereJson = {parent:menuId};
+        dbUtil.deleteMany(menuCollection,menuWhereJson,function () {
+            res.redirect(302, '/menu/tree');
+        });
     });
 })
 

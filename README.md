@@ -1,7 +1,8 @@
 # rbac
 nodejs实现简单基于角色的资源管理
 
-连接mongodb数据库  首次使用请执行127.0.0.1:3000/init方法
+端口:8010
+连接mongodb数据库  首次使用请执行/init方法
 
 @DONE
 * user/role/menu三个模块的维护

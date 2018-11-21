@@ -12,13 +12,12 @@
     </style>
 </head>
 <body>
-<form action="/user/update" method="POST" id="updateForm">
-    <input type="hidden" name="id" value="<%= item._id %>">
+    <input type="hidden" name="id" id="id" value="<%= item._id %>">
     <input type="hidden" name="roleStr" id="roleStr">
     账号: <input type="text" value="<%= item.account %>" readonly="readonly">  <br>
     昵称: <input type="text" value="<%= item.name %>" name="name" id="name" maxlength="10">  <br>
     性别:
-    男<input type="radio" name="sex" value="1" <% if(item.sex=="1") { %>checked="checked" <% }%>> &nbsp;
+    男<input type="radio"  name="sex" value="1" <% if(item.sex=="1") { %>checked="checked" <% }%>> &nbsp;
     女 <input type="radio" name="sex" value="0" <% if(item.sex=="0") { %>checked="checked" <% }%>><br>
     角色:
     <div class="demo">
@@ -47,8 +46,8 @@
             </select>
         </div>
         <input type="button" onclick="isfull();" value="修改">
+        <div id="loading" hidden="hidden"><img src="/images/loading.gif" width="20px">&nbsp;正在修改</div>
     </div>
-</form>
 <script src="/javascripts/jquery-3.3.1.js"></script>
 <script type="text/javascript">
     //选择框相关
@@ -93,7 +92,20 @@
             alert("请选择性别");
             return;
         }
-        $("#updateForm").submit();
+        $("#loading").show();
+        $.ajax({
+            url: '/user/'+$("#id").val(),
+            type: 'PUT',
+            data:{id:$("#id").val(),name:$("#name").val(),sex:$('input:radio[name="sex"]:checked').val(),roleStr:$("#roleStr").val()},
+            success: function(result) {
+                if(result.ret==0){
+                    window.location.href="/user";
+                }else {
+                    alert("删除失败");
+                    $("#loading").hide();
+                }
+            }
+        });
     }
 </script>
 </body>

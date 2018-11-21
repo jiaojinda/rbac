@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-<form action="/user/add" method="POST" id="addForm">
+<form action="/user" method="POST" id="addForm">
     <input type="hidden" name="account" id="account">
     <input type="hidden" name="roleStr" id="roleStr">
     <div id="checkRet"></div>
@@ -102,6 +102,7 @@
     function isfull() {
         var role = [];
         $("#selectR option").each(function(){
+            alert($(this).val());
             role.push($(this).val());
         });
         $("#roleStr").val(role);

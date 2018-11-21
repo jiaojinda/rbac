@@ -3,10 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="0417b3a7-af71-46ed-800c-49eee735927b" name="Default Changelist" comment="无法删除自己">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/menu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/add.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/add.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/list.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/list.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/update.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/update.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -65,47 +66,49 @@
     <session id="-883515069">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.32" value="1" />
           <entry key="project.open.time.33" value="1" />
           <entry key="project.open.time.38" value="2" />
+          <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.44" value="1" />
           <entry key="project.open.time.56" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="ejs" value="35" />
+          <entry key="ejs" value="39" />
           <entry key="html" value="2" />
-          <entry key="js" value="40" />
+          <entry key="js" value="41" />
           <entry key="json" value="3" />
+          <entry key="log" value="1" />
           <entry key="md" value="1" />
           <entry key="www" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="EJS" value="35" />
+          <entry key="EJS" value="39" />
           <entry key="HTML" value="2" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="41" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="JavaScript" value="42" />
+          <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="ejs" value="2251" />
-          <entry key="js" value="2671" />
+          <entry key="ejs" value="2554" />
+          <entry key="js" value="2791" />
           <entry key="txt" value="97" />
           <entry key="www" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="EJS" value="2251" />
-          <entry key="JavaScript" value="2675" />
+          <entry key="EJS" value="2554" />
+          <entry key="JavaScript" value="2795" />
           <entry key="PLAIN_TEXT" value="97" />
         </counts>
       </usages-collector>
@@ -119,17 +122,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="773">
-              <caret line="63" column="31" lean-forward="true" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
+            <state relative-caret-position="133">
+              <caret line="63" column="31" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/user.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="79">
+              <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
+            <state relative-caret-position="230">
+              <caret line="19" column="34" lean-forward="true" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
               <folding>
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
               </folding>
@@ -138,10 +150,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/role.js">
+        <entry file="file://$PROJECT_DIR$/views/user/list.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" selection-start-line="10" selection-end-line="10" selection-end-column="37" />
+            <state relative-caret-position="232">
+              <caret line="42" column="13" lean-forward="true" selection-start-line="37" selection-start-column="12" selection-end-line="42" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -149,44 +161,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/user/add.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="14" column="37" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="37" />
+            <state relative-caret-position="2116">
+              <caret line="104" column="33" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="33" />
+              <folding>
+                <element signature="e#44#50#0" expanded="true" />
+                <element signature="e#50#56#0" expanded="true" />
+                <element signature="e#42#48#0" expanded="true" />
+                <element signature="e#48#54#0" expanded="true" />
+                <element signature="e#42#48#0" expanded="true" />
+                <element signature="e#48#54#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/user.js">
+        <entry file="file://$PROJECT_DIR$/views/user/update.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="17" column="53" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/user/list.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="21" column="44" lean-forward="true" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/menu/add.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+            <state relative-caret-position="87">
+              <caret line="48" column="96" selection-start-line="48" selection-start-column="96" selection-end-line="48" selection-end-column="96" />
             </state>
           </provider>
         </entry>
@@ -202,12 +195,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>user</find>
-      <find>rootNode</find>
-      <find>icon01</find>
-      <find>\</find>
-      <find>alert</find>
-      <find>list</find>
       <find>sub</find>
       <find>align</find>
       <find>main</find>
@@ -232,6 +219,12 @@
       <find>data</find>
       <find>aler</find>
       <find>post</find>
+      <find>router</find>
+      <find>list</find>
+      <find>input</find>
+      <find>id</find>
+      <find>redirect</find>
+      <find>id&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>users</replace>
@@ -246,6 +239,7 @@
       <replace>menuArr</replace>
       <replace>myTree</replace>
       <replace>treeList</replace>
+      <replace>app</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -263,7 +257,6 @@
         <option value="$PROJECT_DIR$/views/menu/add.ejs" />
         <option value="$PROJECT_DIR$/views/menu/update.ejs" />
         <option value="E:/资料/html工具和模板/201左右选择框/index.html" />
-        <option value="$PROJECT_DIR$/views/user/update.ejs" />
         <option value="$PROJECT_DIR$/views/role/add.ejs" />
         <option value="$PROJECT_DIR$/views/menu/tree.ejs" />
         <option value="$PROJECT_DIR$/views/role/update.ejs" />
@@ -273,12 +266,13 @@
         <option value="$PROJECT_DIR$/views/login.ejs" />
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/views/user/add.ejs" />
         <option value="$PROJECT_DIR$/routes/menu.js" />
-        <option value="$PROJECT_DIR$/routes/user.js" />
-        <option value="$PROJECT_DIR$/views/user/list.ejs" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
+        <option value="$PROJECT_DIR$/views/user/add.ejs" />
+        <option value="$PROJECT_DIR$/routes/user.js" />
+        <option value="$PROJECT_DIR$/views/user/list.ejs" />
+        <option value="$PROJECT_DIR$/views/user/update.ejs" />
       </list>
     </option>
   </component>
@@ -330,6 +324,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -337,11 +332,31 @@
               <item name="rbac" type="b2602c69:ProjectViewProjectNode" />
               <item name="rbac" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="rbac" type="b2602c69:ProjectViewProjectNode" />
+              <item name="rbac" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="rbac" type="b2602c69:ProjectViewProjectNode" />
+              <item name="rbac" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="rbac" type="b2602c69:ProjectViewProjectNode" />
+              <item name="rbac" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="rbac" type="b2602c69:ProjectViewProjectNode" />
+              <item name="rbac" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -356,11 +371,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\nodeCode\rbac\db" />
       <recent name="E:\nodeCode\rbac\public\images" />
       <recent name="E:\nodeCode\rbac\views\menu" />
       <recent name="E:\nodeCode\myMongo\views" />
       <recent name="E:\nodeCode\myMongo\routes" />
-      <recent name="E:\nodeCode\myMongo\public\images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -395,7 +410,8 @@
       <workItem from="1542458138086" duration="13694000" />
       <workItem from="1542514469027" duration="14779000" />
       <workItem from="1542631344360" duration="16661000" />
-      <workItem from="1542716397683" duration="4301000" />
+      <workItem from="1542716397683" duration="5872000" />
+      <workItem from="1542806941284" duration="9437000" />
     </task>
     <task id="LOCAL-00001" summary="为角色分配权限等操作">
       <created>1542555266055</created>
@@ -429,10 +445,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117720000" />
+    <option name="totallyTimeSpent" value="128728000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49726775" visible="true" weight="0.16815476" />
       <window_info id="Structure" order="1" sideWeight="0.5027322" side_tool="true" weight="0.24330357" />
@@ -441,7 +458,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32840723" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3295082" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.10180624" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.42528737" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -559,13 +576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/user/update.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/zTree_v3/js/jquery.ztree.excheck.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -676,10 +686,11 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://D:/error.log" />
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+        <state relative-caret-position="621">
+          <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -687,20 +698,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="17" column="53" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/user/add.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="14" column="37" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -713,25 +710,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="773">
-          <caret line="63" column="31" lean-forward="true" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
+        <state relative-caret-position="133">
+          <caret line="63" column="31" selection-start-line="63" selection-start-column="31" selection-end-line="63" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+    <entry file="file://$PROJECT_DIR$/views/user/add.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
+        <state relative-caret-position="2116">
+          <caret line="104" column="33" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="33" />
           <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="e#44#50#0" expanded="true" />
+            <element signature="e#50#56#0" expanded="true" />
+            <element signature="e#42#48#0" expanded="true" />
+            <element signature="e#48#54#0" expanded="true" />
+            <element signature="e#42#48#0" expanded="true" />
+            <element signature="e#48#54#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/user/list.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="21" column="44" lean-forward="true" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
+        <state relative-caret-position="232">
+          <caret line="42" column="13" lean-forward="true" selection-start-line="37" selection-start-column="12" selection-end-line="42" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/user/update.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="48" column="96" selection-start-line="48" selection-start-column="96" selection-end-line="48" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="19" column="34" lean-forward="true" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

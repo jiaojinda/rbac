@@ -2,6 +2,7 @@
 <html>
 <body>
 <input type="button" onclick="javascrtpt:window.location.href='/user/add'" value="添加">
+<div id="loading" hidden="hidden"><img src="/images/loading.gif" width="20px">&nbsp;正在删除</div>
 <table border="1">
     <tr>
         <th>账号</th>
@@ -18,16 +19,31 @@
                 <%if(list[i].sex=="0" ){%> 女 <%}%>
             </td>
             <td>
-                <a href="/user/update?id=<%= list[i]._id %>">修改</a>
+                <a href="/user/<%= list[i]._id %>">修改</a>
                 <%if(list[i]._id!=userId){%>
-                    <a href="/user/del?id=<%= list[i]._id %>">删除</a>
+                    <button onclick="toDel('<%= list[i]._id %>');">删除</button>
                 <%}%>
             </td>
         </tr>
     <% } %>
 </table>
+<script src="/javascripts/jquery-3.3.1.js"></script>
 <script>
-
+function toDel(id) {
+    $("#loading").show();
+    $.ajax({
+        url: '/user/'+id,
+        type: 'DELETE',
+        success: function(result) {
+            if(result.ret==0){
+                window.location.reload();
+            }else {
+                alert("删除失败");
+                $("#loading").hide();
+            }
+        }
+    });
+}
 </script>
 </body>
 </html>
